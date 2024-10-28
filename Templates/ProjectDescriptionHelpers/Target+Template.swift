@@ -46,4 +46,26 @@ extension Target {
                              dependencies: dependencies, // 의존성 설정
                              settings: settings) // 세팅 설정
     }
+    
+    /**
+    Target 간소화 생성자
+     
+     - Parameters:
+        - module: ModuleProtocol 내에 지정한 Module 정보
+     */
+    public init(with module: ModuleProtocol, config: BaseSettingConfigType? = nil) {
+        self = Target.target(name: module.name, // 타겟 이름 설정
+                             destinations: [.iPhone, .macWithiPadDesign, .appleVisionWithiPadDesign], // 타겟에서 지원되는 배포 대상 설정
+                             product: module.product, // 타겟 product 설정 (ex: app, unitTest, framework 등...)
+                             bundleId: module.bundleId, // Bundle ID
+                             deploymentTargets: .iOS(config?.iOSVersion ?? DefaultBaseSettingConfig().iOSVersion), // 타겟 deployment 최소 버전.
+                             infoPlist: module.infoPlist, // info.plist 설정
+                             sources: module.sources, // 소스 경로 설정
+                             resources: module.resources, // 리소스 경로 설정
+                             scripts: module.scripts, // 스크립트 설정
+                             dependencies: module.dependencies, // 의존성 설정
+                             settings: module.settings, // 세팅 설정
+                             environmentVariables: module.environmentVariables,
+                             launchArguments: module.launchArguments)
+    }
 }
