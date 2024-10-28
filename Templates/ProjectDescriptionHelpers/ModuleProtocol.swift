@@ -38,7 +38,7 @@ public protocol ModuleProtocol {
     var launchArguments: [LaunchArgument] { get }
 }
 
-extension ModuleProtocol where Self: RawRepresentable, RawValue == String {
+public extension ModuleProtocol where Self: RawRepresentable, RawValue == String {
     var name: String { rawValue }
     var defaultPath: String { name }
     var bundleId: String { DefaultBaseSettingConfig().organizationName }
