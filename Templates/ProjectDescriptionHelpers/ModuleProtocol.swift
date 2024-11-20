@@ -61,7 +61,7 @@ public extension ModuleProtocol where Self: RawRepresentable, RawValue == String
 
 extension ModuleProtocol {
     private var base: SettingsDictionary {
-        ["SWIFT_VERSION": "5.0",
+        ["SWIFT_VERSION": "6.0",
          "IPHONEOS_DEPLOYMENT_TARGET": .string(DefaultBaseSettingConfig().iOSVersion)]
     }
 }
