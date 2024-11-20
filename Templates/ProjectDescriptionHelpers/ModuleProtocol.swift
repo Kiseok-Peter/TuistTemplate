@@ -41,8 +41,8 @@ public protocol ModuleProtocol {
 public extension ModuleProtocol where Self: RawRepresentable, RawValue == String {
     var name: String { rawValue }
     var defaultPath: String { name }
-    var infoPlist: ProjectDescription.InfoPlist { .file(path: .path(defaultPath)) }
     var bundleId: String { DefaultBaseSettingConfig().organizationName + name }
+    var infoPlist: ProjectDescription.InfoPlist { .file(path: .path(defaultPath + "/Info.plist")) }
     var sources: SourceFilesList { [.glob(.path(defaultPath + "/Sources/**"), excluding: excludingSources)] }
     var excludingSources: [Path] { [] }
     var resources: ResourceFileElements? {
